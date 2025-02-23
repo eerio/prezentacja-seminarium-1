@@ -1,3 +1,7 @@
+From Coq Require Import Lia Arith List.
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.join.join.
+Require Import Ciaffaglione.join.shift.
 
 Fixpoint gtstate (q p:State) {struct q}: bool := 
          match q with | 0 => false
@@ -14,13 +18,13 @@ Fixpoint max_source (T:Spec) (n:nat) {struct T}: nat :=
          end end.
 
 Lemma gt_true: forall a b, a>b -> (gtstate a b)=true.
-double induction a b; intros; auto.
-lia. lia. simpl. apply H0. lia. 
+induction a; induction b; intros; auto.
+lia. lia. simpl. apply IHa. lia. 
 Qed.
 
 Lemma gt_false: forall a b, a<=b -> (gtstate a b)=false.
-double induction a b; intros; auto.
-lia. simpl. apply H0. lia.
+induction a; induction b; intros; auto.
+lia. simpl. apply IHa. lia.
 Qed. 
 
 Lemma max_source_mono: forall M m n,
@@ -55,6 +59,20 @@ assert (max_source M n <= max_source M s0).
 apply max_source_mono. lia.
 lia. assumption.
 Qed.
+
+(* this perhaps was supposed to be in stdlib, but is not *)
+Theorem plus_comm: forall (n m:nat),
+  n + m = m + n.
+Proof.
+  intros.
+  lia.
+Qed.
+(* this also; it was in Coq.Arith.Plus *)
+Lemma plus_le_compat_r : forall n m p, n <= m -> n + p <= m + p.
+Proof.
+  induction 1; simpl in |- *; auto with arith.
+Qed.
+Hint Resolve plus_le_compat_r: arith v62.
 
 Lemma shift_maxsource: forall M i n,
       In i (proj_source (shift M n)) ->

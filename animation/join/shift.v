@@ -1,3 +1,8 @@
+From Coq Require Import List Lia Arith.
+
+Require Import Ciaffaglione.bigstep.
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.join.join.
 
 Fixpoint shift (T:Spec) (n:nat) {struct T}: Spec :=
          match T with | nil => nil
@@ -15,8 +20,14 @@ simpl in H. tauto.
 
 destruct a. destruct p. destruct p.
 simpl in H. inversion_clear H.
-rewrite <- H0. left. omega.
+rewrite <- H0. left. lia.
 apply IHM. assumption.
+Qed.
+
+(* this was present in Coq.Arith.Plus, but seems to be removed now *)
+Lemma plus_reg_l : forall n m p, p + n = p + m -> n = m.
+Proof.
+  intros m p n; induction n; simpl in |- *; auto with arith.
 Qed.
 
 Lemma shift_stop: forall T s p,
@@ -28,8 +39,8 @@ unfold is_value. simpl. reflexivity.
 
 destruct a. destruct p0. destruct p0. simpl.
 unfold is_value in IHT, H |-*. simpl in H |-*.
-elim (eq_nat_dec p s2); intro.
-elim (eq_sym_dec (read s) s3); intro.
+elim (eq_nat_dec p s1); intro.
+elim (eq_sym_dec (read s) s2); intro.
 
 rewrite a, a0 in H.
 rewrite eq_state in H. rewrite eq_sym in H. inversion H.
@@ -53,8 +64,8 @@ simpl in H. inversion H.
 
 destruct a. destruct p0. destruct p0.
 simpl in H |-*.
-elim (eq_nat_dec p s2); intro.
-elim (eq_sym_dec s s3); intro.
+elim (eq_nat_dec p s1); intro.
+elim (eq_sym_dec s s2); intro.
 
 rewrite a, a0 in H |-*.
 rewrite eq_state in H |-*. rewrite eq_sym in H |-*.

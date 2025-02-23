@@ -1,3 +1,9 @@
+From Coq Require Import List Lia.
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.coinduction.
+Require Import Ciaffaglione.bigstep.
+Require Import Ciaffaglione.adequacy.streams_vs_lists.
+Require Import Ciaffaglione.examples.Ndiv2oo.
 
 (* Function div2(n) = n/2       if n is even
                       undefined otherwise

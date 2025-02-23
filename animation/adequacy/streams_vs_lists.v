@@ -477,3 +477,85 @@ apply cohp with (pair (app_ls (cons s1 (trunc_Str m l0)) Bs)
 simpl. simpl in H2. assumption.
 reflexivity.
 Qed.
+
+(************************ Auxiliary objects and properties  ***************)
+
+Fixpoint ones (n:nat) {struct n}: list Sym :=
+         match n with
+         | 0 => nil 
+         | (S m) => (cons one (ones m))
+         end.
+
+Lemma ones_comm: forall n l,
+      (app_ls (ones n) (Cons one l)) = (Cons one (app_ls (ones n) l)).
+induction n; simpl; intros.
+reflexivity.
+rewrite IHn. reflexivity.
+Qed.
+
+Fixpoint blanks (n:nat) {struct n}: list Sym :=
+         match n with
+         | 0 => nil 
+         | (S m) => (cons B (blanks m))
+         end.
+
+Lemma blanks_step: forall l,
+      (Cons B l) = (app_ls (blanks 1) l).
+simpl. reflexivity.
+Qed.
+
+Fixpoint zeros (n:nat) {struct n}: list Sym :=
+         match n with
+         | 0 => nil 
+         | (S m) => (cons zero (zeros m))
+         end.
+
+Lemma zeros_step: forall l,
+      (Cons zero l) = (app_ls (zeros 1) l).
+simpl. reflexivity.
+Qed.
+
+Lemma blanks_comm: forall n l,
+      (app_ls (blanks n) (Cons B l)) = (app_ls (blanks (S n)) l).
+induction n; simpl; intros.
+reflexivity.
+rewrite IHn. simpl. reflexivity.
+Qed.
+
+Lemma zeros_comm: forall n l,
+      (app_ls (zeros n) (Cons zero l)) = (app_ls (zeros (S n)) l).
+induction n; simpl; intros.
+reflexivity.
+rewrite IHn. simpl. reflexivity.
+Qed.
+
+(************************ Auxiliary objects and properties  ***************)
+
+Lemma zeros_comm2: forall n l,
+      (app_ls (zeros n) (Cons zero l)) = (Cons zero (app_ls (zeros n) l)).
+induction n; simpl; intros.
+reflexivity.
+rewrite IHn. reflexivity.
+Qed.
+
+Lemma blanks_comm2: forall n l,
+      (app_ls (blanks n) (Cons B l)) = (Cons B (app_ls (blanks n) l)).
+induction n; simpl; intros.
+reflexivity.
+rewrite IHn. reflexivity.
+Qed.
+
+Lemma ones_step2: forall n l,
+      (Cons one (app_ls (ones n) l)) = (app_ls (ones (S n)) l).
+simpl. reflexivity.
+Qed.
+
+Lemma blanks_step2: forall n l,
+      (Cons B (app_ls (blanks n) l)) = (app_ls (blanks (S n)) l).
+simpl. reflexivity.
+Qed.
+
+Lemma zeros_step2: forall n l,
+      (Cons zero (app_ls (zeros n) l)) = (app_ls (zeros (S n)) l).
+simpl. reflexivity.
+Qed.

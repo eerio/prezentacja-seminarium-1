@@ -1,3 +1,10 @@
+From Coq Require Import List Lia.
+Require Import Ciaffaglione.coinduction.
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.bigstep.
+Require Import Ciaffaglione.adequacy.big_vs_small.
+Require Import Ciaffaglione.adequacy.smallstep.
+Require Import Ciaffaglione.adequacy.streams_vs_lists.
 
 (**************** COPY Machine ***************)
 

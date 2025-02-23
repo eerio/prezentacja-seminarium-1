@@ -1,3 +1,9 @@
+From Coq Require Import List Lia.
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.coinduction.
+Require Import Ciaffaglione.bigstep.
+Require Import Ciaffaglione.adequacy.streams_vs_lists.
+
 
 (* Function div2(n) = n/2       if n is even
                       undefined otherwise
@@ -19,13 +25,6 @@ Definition div2: Spec := (1, one, 1, W B) ::
                          (4, B  , 2,   R) :: nil.
 
 (************************ Divergence proof ************************)
-
-Fixpoint ones (n:nat) {struct n}: list Sym :=
-         match n with
-         | 0 => nil 
-         | (S m) => (cons one (ones m))
-         end.
-
 (*
 loop from state 3, if Bs on the right
 *)

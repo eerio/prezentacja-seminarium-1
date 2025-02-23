@@ -1,11 +1,26 @@
+From Coq Require Import Lia List.
+
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.bigstep.
+Require Import Ciaffaglione.coinduction.
+Require Import Ciaffaglione.bf_vs_bi.
+Require Import Ciaffaglione.adequacy.streams_vs_lists.
+Require Import Ciaffaglione.join.join.
+Require Import Ciaffaglione.join.shift.
+Require Import Ciaffaglione.join.shift_maxsource.
+Require Import Ciaffaglione.halting.copy.
+Require Import Ciaffaglione.halting.dither.
+Require Import Ciaffaglione.halting.witness.
+Require Import Ciaffaglione.halting.halting_defs.
 
 (* First half of the proof:
    supposing that Witness halts leads to absurd
 *)
 
 Lemma witness_stops_absurd:
+      HM_decides_stop ->
       halt witness (gamma witness) -> False.
-unfold halt; intro.
+intro HM_decides_stop. unfold halt; intro.
 elim H; clear H. intro t; intro.
 
 cut (bi witness (pair Bs (app_ls (ones (S (gamma witness))) Bs)) 0).

@@ -1,4 +1,7 @@
-
+From Coq Require Import List.
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.bigstep.
+Require Import Ciaffaglione.coinduction.
 (**************** DITHER Machine ***************)
 
 (*

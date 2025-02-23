@@ -40,7 +40,7 @@ Inductive Tape: Set := pair: HTape -> HTape -> Tape.
 Parameter tr: Spec -> State -> Sym -> option (State * Head).
 *)
 
-Fixpoint eqsym (a b:Sym) {struct a}: bool := 
+Definition eqsym (a b : Sym) : bool := 
          match a, b with B, B => true
                     |    one, one => true
                     |    zero, zero => true

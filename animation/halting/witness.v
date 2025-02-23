@@ -1,3 +1,26 @@
+From Coq Require Import Arith Lia List.
+Require Import Ciaffaglione.join.shift.
+Require Import Ciaffaglione.join.shift_maxsource.
+Require Import Ciaffaglione.halting.copy.
+Require Import Ciaffaglione.halting.dither.
+Require Import Ciaffaglione.halting.halting_defs.
+
+(* from deprecated Coq.Arith.Plus *)
+Lemma plus_le_compat n m p q : n <= m -> p <= q -> n + p <= m + q.
+lia.
+Qed.
+
+Lemma plus_assoc : forall n m p, n + (m + p) = n + m + p.
+Proof.
+  intros n m p; elim n; simpl in |- *; auto with arith.
+Qed.
+Hint Resolve plus_assoc: arith v62.
+
+(* from deprecated Coq.Arith.Lt *)
+Theorem le_lt_or_eq : forall n m, n <= m -> n < m \/ n = m.
+Proof.
+  induction 1; auto with arith.
+Qed.
 
 (**************** WITNESS Machine ***************)
 
@@ -5,6 +28,7 @@ Definition witness :=
   (app Copy
   (app (shift HM     7)
        (shift Dither (max_source HM 0 + 8)))).
+
 
 (*** Auxiliary properties for the 2nd path of Undecidability ***)
 
@@ -37,7 +61,7 @@ Lemma maxsource_swap: forall M n a b,
       max_source (cons b (cons a M)) n.
 intros. 
 destruct a. destruct p. destruct p.
-destruct b. destruct p. destruct p. simpl.
+destruct b. destruct p. destruct p as (s4 & s3). simpl.
 
 elim (le_gt_dec s0 n); intros.
 
@@ -84,7 +108,7 @@ simpl. reflexivity.
 rewrite maxsource_swap.
 destruct a. destruct p. destruct p.
 
-rewrite max_source_1step. simpl (max_source (((s0, s2, s, h) :: M) ++ a0 :: nil) n). 
+rewrite max_source_1step. simpl (max_source (((s0, s1, s, h) :: M) ++ a0 :: nil) n). 
 elim (le_gt_dec s0 n); intros.
 
 rewrite gt_false. apply IHM. assumption.
@@ -96,13 +120,13 @@ Lemma maxsource_app_comm: forall M N n,
       max_source (app M N) n = max_source (app N M) n.
 induction M; intros.
 
-simpl. rewrite <- app_nil_end. reflexivity.
+simpl. rewrite app_nil_r. reflexivity.
 
 assert (N ++ a :: M = app (app N (cons a nil)) M).
-rewrite <- ass_app. rewrite <- app_comm_cons. auto.
+rewrite <- app_assoc. rewrite <- app_comm_cons. auto.
 rewrite H; clear H. rewrite <- IHM.
 
-rewrite <- app_comm_cons. rewrite ass_app.
+rewrite <- app_comm_cons. rewrite app_assoc.
 rewrite <- maxsource_app_comm_item. reflexivity.
 Qed.
 
