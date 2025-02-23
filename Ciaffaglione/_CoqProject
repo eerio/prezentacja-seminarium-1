@@ -4,7 +4,6 @@ bigstep.v
 coinduction.v
 datatypes.v
 bf_vs_bi.v
-# index.v
 
 adequacy
 join

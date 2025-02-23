@@ -1,42 +1,45 @@
-Alberto Ciaffaglione, University of Udine (Italy) - October 2015
-"Towards Turing Computability via Coinduction" in Coq 8.4(pl5)
+This repository upgrades the Coq code from "Towards Turing computability via coinduction"
+from 8.4pl5 to 8.20.1
 
-------------------------------------------------------------------
-The contribution is structured as follows:
-- directory "animation": the whole contribution
-- directory "metatheory": first part of the contribution (doubled),
-via a parametric (i.e., abstract) encoding for States and Alphabet
+Please note that 8.4pl5 contained a serious inconsistency bug, as documented by:
+https://github.com/clarus/falso
 
-------------------------------------------------------------------
-The main directory "animation" is structured as follows:
-- file "index":
-order of precedence for files
+link to the paper:
+https://doi.org/10.1016/j.scico.2016.02.004
 
-- file "datatypes":
-formalization of Turing Machines via streams
+source:
+https://users.dimi.uniud.it/~alberto.ciaffaglione/Turing/Halting/
 
-- file "coinduction":
-introduction to coinduction in Coq
 
-- file "bigstep":
-big-step semantics with streams
+Install opam and the correct version of Coq, coq-lsp and the vscode extension
+Coq-lsp is completely superior to VSCoq, emacs and vim versions
+It is superior to VSCoq, because the former is not really supported anymore
+And it is superior to emacs and vim plugins, because it really
+works well out of the box. I just spend ~10 hours using it while
+working on this project and, given you use Open Folder in VSCode on the correct folder
+(i.e. on the directory containing _CoqProject, so not the root of this repo but the Ciaffaglione dir),
+it really works better than CoqIDE or anything. Only doesn't synchronize well with
+working on multiple files at once and compiling it independently from
+the terminal - it requires LSP server restart when it doesn't see
+that an imported file has changed.
 
-- file "bf_vs_bi":
-relationship between big-step convergence and divergence
+$ sudo apt install opam
+$ opam init
+$ opam pin add coq 8.20.1
+$ opam install coq-lsp && code --install-extension ejgallego.coq-lsp
 
-- directory "adequacy":
-big-step semantics with lists and relationship with streams
-small-step semantics and equivalence with big-step semantics
+$ coqc --version
+The Coq Proof Assistant, version 8.20.1
+compiled with OCaml 5.2.1
+$ cd Ciaffaglione
+$ coq_makefile -f _CoqProject -o CoqMakefile && make -f CoqMakefile
+COQDEP VFILES
+COQC datatypes.v
+COQC bigstep.v
+COQC coinduction.v
+[...]
+ 
 
-- directory "examples":
-proofs of convergence and divergence for 3 sample machines
-(also a divergence proof that fails to be "guarded")
 
-- directory "join":
-sequential composition of Turing Machines and its properties
-
-- directory "halting":
-prove of the undecidability of the halting problem, via:
-preliminary definitions (file "halting_defs")
-machines Copy, Dither and Witness
-the two paths of the proof (files "halt_not_halt" and "not_halt_halt")
+A good material on coinductive types in Coq:
+https://link.springer.com/chapter/10.1007/3-540-60579-7_3
