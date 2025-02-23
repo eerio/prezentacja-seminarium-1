@@ -58,7 +58,7 @@ auto.
 simpl. apply biR with 2.
 auto.
 simpl. replace (n + (n + 0) + 1) with (2*n + 1). apply IHn.
-omega. omega.
+lia. lia.
 Qed.
 
 (*
@@ -72,5 +72,5 @@ auto.
 simpl. apply biR with 2.
 auto.
 simpl. replace (n + (n + 0) + 1) with (2*n + 1). apply div2_loops_2odd.
-omega.
+lia.
 Qed.

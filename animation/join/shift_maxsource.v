@@ -15,12 +15,12 @@ Fixpoint max_source (T:Spec) (n:nat) {struct T}: nat :=
 
 Lemma gt_true: forall a b, a>b -> (gtstate a b)=true.
 double induction a b; intros; auto.
-omega. omega. simpl. apply H0. omega. 
+lia. lia. simpl. apply H0. lia. 
 Qed.
 
 Lemma gt_false: forall a b, a<=b -> (gtstate a b)=false.
 double induction a b; intros; auto.
-omega. simpl. apply H0. omega.
+lia. simpl. apply H0. lia.
 Qed. 
 
 Lemma max_source_mono: forall M m n,
@@ -33,7 +33,7 @@ destruct a. destruct p. destruct p. simpl.
 elim (le_gt_dec s0 m); intros.
 
 rewrite (gt_false s0 m). rewrite (gt_false s0 n).
-apply IHM. assumption. omega. assumption.
+apply IHM. assumption. lia. assumption.
 
 rewrite gt_true. elim (le_gt_dec s0 n); intros.
 rewrite gt_false. apply IHM. assumption. assumption.
@@ -44,7 +44,7 @@ Lemma max_source_ge: forall M n,
       n <= max_source M n.
 induction M; intros.
 
-simpl. omega.
+simpl. lia.
 
 destruct a. destruct p. destruct p. simpl.
 elim (le_gt_dec s0 n); intros.
@@ -52,8 +52,8 @@ rewrite gt_false. apply IHM. assumption.
 rewrite gt_true.
 assert (n <= max_source M n). apply IHM.
 assert (max_source M n <= max_source M s0). 
-apply max_source_mono. omega.
-omega. assumption.
+apply max_source_mono. lia.
+lia. assumption.
 Qed.
 
 Lemma shift_maxsource: forall M i n,
@@ -70,7 +70,7 @@ inversion_clear H.
 
 rewrite <- H0; clear H0.
 rewrite gt_false. rewrite plus_comm. apply plus_le_compat_r.
-omega. assumption.
+lia. assumption.
 
 rewrite gt_false. apply IHM. assumption. assumption.
 
@@ -83,6 +83,6 @@ apply max_source_ge. assumption.
 rewrite gt_true. assert (i <= max_source M 0 + n).
 apply IHM. assumption.
 assert (max_source M 0 + n <= max_source M s0 + n).
-apply plus_le_compat_r. apply max_source_mono. omega.
-omega. assumption.
+apply plus_le_compat_r. apply max_source_mono. lia.
+lia. assumption.
 Qed.

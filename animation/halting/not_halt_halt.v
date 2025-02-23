@@ -52,7 +52,7 @@ clear H; unfold not, Dither. simpl; intros.
 
 assert (i <= (max_source HM 0)+7).
 apply shift_maxsource. assumption.
-omega.
+lia.
 
 (* 2nd check
 *)
@@ -65,5 +65,5 @@ assert (i >= 7 \/ In i (proj_target
              :: (max_source HM 0 + 8 + 1, one, max_source HM 0 + 8 + 2, L)
                 :: nil))).
 apply app_shift with HM. assumption.
-clear H; simpl in H1. omega.
+clear H; simpl in H1. lia.
 Qed.

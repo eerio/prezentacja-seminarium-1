@@ -1,4 +1,3 @@
-
 (*** Convergence and divergence are mutually exclusive ***)
 
 Lemma bf_not_bi: forall T s p t q,

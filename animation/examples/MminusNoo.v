@@ -156,11 +156,11 @@ double induction n m; simpl; intros.
 
 (* m=n=0 *)
 
-omega. 
+lia. 
 
 (* m=p+1, n=0 *)
 
-omega.
+lia.
 
 (* m=0, n=p+1 *)
 
@@ -270,7 +270,7 @@ Qed.
 apply pminus_loops_aux_3to5.
 
 rewrite blanks_comm. rewrite zeros_comm.
-apply H0. omega.
+apply H0. lia.
 Qed.
 
 apply pminus_loops_5_B_0. assumption.

@@ -142,7 +142,7 @@ rewrite <- zeros_comm2. apply pminus_stops_aux_2to2.
 
 (* m=0, n=p+1 *)
 
-omega.
+lia.
 
 (* m=q+1, n=p+1 *)
 
@@ -243,10 +243,10 @@ apply sf_5.
 
 do 3 rewrite blanks_comm. simpl.  rewrite blanks_step2.
 rewrite zeros_step2. rewrite (zeros_step2 (n1 + S k)).
-assert (S (n1 + S k) = (n1 + S (S k))). omega. rewrite H; clear H.
+assert (S (n1 + S k) = (n1 + S (S k))). lia. rewrite H; clear H.
 rewrite (blanks_step2 (n1 + S (S k))).
-assert (S (n1 + S (S k)) = (n1 + S (S (S k)))). omega. rewrite H; clear H.
-apply H0. omega.
+assert (S (n1 + S (S k)) = (n1 + S (S (S k)))). lia. rewrite H; clear H.
+apply H0. lia.
 Qed.
 
 rewrite blanks_step. rewrite blanks_comm.

@@ -23,7 +23,7 @@ rewrite plus_comm at 1.
 rewrite gt_false. apply IHM. assumption.
 
 apply plus_le_compat.
-assert (k <= max_source M k). apply max_source_ge. omega.
+assert (k <= max_source M k). apply max_source_ge. lia.
 assumption. assumption.
 
 rewrite (gt_true s0 k).
@@ -46,13 +46,13 @@ elim (le_gt_dec s4 n); intros.
 
 rewrite gt_false. reflexivity. assumption.
 
-rewrite gt_true. rewrite gt_false. reflexivity. omega.
+rewrite gt_true. rewrite gt_false. reflexivity. lia.
 assumption. assumption.
 
 rewrite gt_true.
 elim (le_gt_dec s4 n); intros.
 
-rewrite gt_false. rewrite gt_false. reflexivity. assumption. omega.
+rewrite gt_false. rewrite gt_false. reflexivity. assumption. lia.
 
 elim (le_gt_dec s4 s0); intros.
 
@@ -62,10 +62,10 @@ elim H; clear H a; intro.
 
 rewrite gt_true. reflexivity. assumption.
 rewrite H. rewrite gt_false. reflexivity.
-omega. assumption. assumption. 
+lia. assumption. assumption. 
 
 rewrite gt_true. rewrite gt_true. rewrite gt_false. reflexivity.
-omega. assumption. assumption. assumption. 
+lia. assumption. assumption. assumption. 
 Qed.
 
 Lemma max_source_1step: forall p a x q b M n,
@@ -116,7 +116,7 @@ rewrite (gt_false (max_source HM 0 + 8 + 1) (max_source HM 0 + 8 + 1)).
 
 rewrite <- plus_assoc. change (8+1) with 9.
 
-apply max_source_shift. omega.
+apply max_source_shift. lia.
 
-omega. omega. omega. 
+lia. lia. lia. 
 Qed.

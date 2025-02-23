@@ -57,7 +57,7 @@ simpl. apply bfR with 2.
 auto.
 simpl. replace (n + (n + 0)) with (2*n).
 rewrite repeat_comm. apply IHn.
-omega. omega.
+lia. lia.
 Qed.
 
 (*
@@ -74,5 +74,5 @@ auto.
 simpl. apply bfR with 2.
 auto.
 simpl. replace (n + (n + 0)) with (2*n). apply div2_stops_2even.
-omega.
+lia.
 Qed.

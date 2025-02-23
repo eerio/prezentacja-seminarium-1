@@ -170,7 +170,7 @@ apply sfI with 3 (pair (app_ls (ones j) (Cons zero (Cons zero
 apply s1L. auto.
 
 do 2 rewrite zeros_step2. rewrite ones_comm. do 2 rewrite ones_step2.
-apply IHj. omega.
+apply IHj. lia.
 Qed.
 
 Lemma Copy_loop_sf: forall n,
@@ -181,7 +181,7 @@ Lemma Copy_loop_sf: forall n,
                     (Cons B (app_ls (ones (S n)) Bs)))
                3.
 rewrite zeros_step. change (Cons one Bs) with (app_ls (ones 1) Bs).
-intro. apply Copy_loop_generalized_sf. omega.
+intro. apply Copy_loop_generalized_sf. lia.
 Qed.
 
 (*************** BEGIN part *****************************************)

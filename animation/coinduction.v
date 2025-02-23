@@ -1,4 +1,3 @@
-
 (*** Section 4 of the paper ***)
 
 CoFixpoint Bs := Cons B Bs.

@@ -1,5 +1,4 @@
-
-Require Import List EqNat Arith Omega.
+Require Import List EqNat Arith Lia.
 
 (************* Syntax of Turing machines ***************)
 

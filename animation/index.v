@@ -1,4 +1,3 @@
-
 Load datatypes.
 
 Load coinduction.
