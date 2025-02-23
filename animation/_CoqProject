@@ -1,24 +1,27 @@
--R . Ciaffaglione
+-Q . Ciaffaglione
 
 bigstep.v
 coinduction.v
 datatypes.v
-index.v
 bf_vs_bi.v
+# index.v
 
-join/join.v
-join/shift_maxsource.v
-join/shift.v
-
-halting/copy.v
-halting/dither.v
-halting/halt_not_halt.v
-halting/halting_defs.v
-halting/not_halt_halt.v
-halting/undecidability.v
-halting/witness.vadequacy/
-
-adequacy/big_vs_small.v
-adequacy/bigstep_lists.v
-adequacy/smallstep.v
-adequacy/streams_vs_lists.v
+adequacy
+# join
+# 
+# join/join.v
+# join/shift_maxsource.v
+# join/shift.v
+# 
+# halting/copy.v
+# halting/dither.v
+# halting/halt_not_halt.v
+# halting/halting_defs.v
+# halting/not_halt_halt.v
+# halting/undecidability.v
+# halting/witness.vadequacy/
+# 
+# adequacy/big_vs_small.v
+# adequacy/bigstep_lists.v
+# adequacy/smallstep.v
+# adequacy/streams_vs_lists.v

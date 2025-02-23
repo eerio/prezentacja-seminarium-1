@@ -1,4 +1,4 @@
-Require Import List EqNat Arith Lia.
+From Coq Require Import List EqNat Arith Lia.
 
 (************* Syntax of Turing machines ***************)
 

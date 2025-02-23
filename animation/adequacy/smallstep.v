@@ -1,3 +1,5 @@
+Require Import Ciaffaglione.bigstep.
+Require Import Ciaffaglione.datatypes.
 
 (****************** One-step Reduction **************)
 

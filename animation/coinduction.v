@@ -1,5 +1,7 @@
-(*** Section 4 of the paper ***)
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.adequacy.bigstep_lists.
 
+(*** Section 4 of the paper ***)
 CoFixpoint Bs := Cons B Bs.
 
 CoFixpoint same (a:Sym) := Cons a (same a).

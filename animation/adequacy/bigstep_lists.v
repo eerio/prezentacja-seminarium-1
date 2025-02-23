@@ -1,3 +1,4 @@
+Require Import Ciaffaglione.datatypes.
 
 (************* Syntax of Turing machines with lists ***************)
 

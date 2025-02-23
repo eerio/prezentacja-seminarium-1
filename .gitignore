@@ -1,1 +1,11 @@
 .vscode
+*.vok
+*.vos
+*.vo
+*.glob
+*.aux
+CoqMakefile
+CoqMakefile.conf
+.CoqMakefile.d
+.lia.cache
+

@@ -1,12 +1,9 @@
+From Coq Require Import List.
 
-(*
-CoFixpoint Bs := (Cons B Bs).
-
-Lemma unfold_HTape: forall h:HTape,
-	            h = (match h with (Cons a k) => (Cons a k) end).
-destruct h. reflexivity.
-Qed.
-*)
+Require Import Ciaffaglione.coinduction.
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.bigstep.
+Require Import Ciaffaglione.adequacy.bigstep_lists.
 
 Lemma unfold_Bs: Bs = (Cons B Bs).
 apply (unfold_HTape Bs).

@@ -1,3 +1,7 @@
+Require Import Ciaffaglione.bigstep.
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.adequacy.smallstep.
+
 (****************** Big -> Small *********************)
 
 Lemma if_bf_then_sf: forall T s p t q,

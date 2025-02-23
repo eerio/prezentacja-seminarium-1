@@ -1,3 +1,6 @@
+From Coq Require Import Arith List.
+Require Import Ciaffaglione.datatypes.
+Require Import Ciaffaglione.bigstep.
 
 (**************** Preliminary definitions and proofs ***************)
 
@@ -19,7 +22,7 @@ auto. auto. auto.
 Qed.
 
 Lemma neq_sym: forall a b, a<>b -> (eqsym a b)=false.
-double induction a b; auto; intros.
+induction a; induction b; auto; intros.
 contradiction H; auto. contradiction H; auto. contradiction H; auto.
 Qed.
 
@@ -36,9 +39,9 @@ auto. simpl. assumption.
 Qed.
 
 Lemma neq_state: forall p q, p<>q -> (eqstate p q)=false.
-double induction p q; auto; intros.
+induction p; induction q; auto; intros.
 contradiction H; auto.
-simpl. apply H0. auto.
+simpl. apply IHp. auto.
 Qed.
 
 (**************** Join properties about CONVERGENCE ***************)
@@ -57,7 +60,7 @@ simpl. reflexivity.
 
 destruct a. destruct p0. destruct p0. simpl in H |- *.
 elim (eq_nat_dec p s0); intro.
-elim (eq_sym_dec a0 s2); intro.
+elim (eq_sym_dec a0 s1); intro.
 
 rewrite a, a1 in H.
 rewrite eq_state in H. rewrite eq_sym in H.
@@ -85,7 +88,7 @@ simpl in H. contradiction H. reflexivity.
 
 destruct a. destruct p0. destruct p0. simpl in H |-*. 
 elim (eq_nat_dec p s0); intro.
-elim (eq_sym_dec a0 s2); intro.
+elim (eq_sym_dec a0 s1); intro.
 
 rewrite a, a1.
 rewrite eq_state. rewrite eq_sym. reflexivity.
@@ -128,7 +131,7 @@ simpl in H. inversion H.
 
 destruct a. destruct p0. destruct p0. simpl in H |- *.
 elim (eq_nat_dec p s0); intro.
-elim (eq_sym_dec a0 s2); intro.
+elim (eq_sym_dec a0 s1); intro.
 
 rewrite a, a1 in H.
 rewrite eq_state in H. rewrite eq_sym in H.
